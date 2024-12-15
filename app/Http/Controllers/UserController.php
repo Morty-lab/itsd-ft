@@ -96,10 +96,15 @@ class UserController extends Controller
         if (!auth()->user()->hasAnyPermission(['can view users', 'is super admin'])) {
             return redirect()->route('dashboard')->with('error', 'You do not have permission to view this page.');
         }
-        $user = User::find($id);
-        return view('users.view', ['user' => $user]);
 
+        $user = User::find($id);
+
+        // Fetch the user's permissions
+        $permissions = $user->permissions;
+
+        return view('users.view', ['user' => $user, 'permissions' => $permissions]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

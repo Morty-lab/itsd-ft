@@ -13,9 +13,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::with('permissions')->get();
+        $roles = Role::paginate(10); // Adjust the number based on your preference
         return view('roles.index', compact('roles'));
     }
+
 
     /**
      * Show the form for creating a new roles.

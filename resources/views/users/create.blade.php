@@ -6,57 +6,54 @@
     </x-slot>
 
     <x-slot name="slot">
-        <div class="container mx-auto p-4">
-            <div class="flex justify-center">
-                <div class="w-full max-w-4xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                    <form method="POST" action="{{ route('users.store') }}">
-                        @csrf
-                        <!-- Name Input -->
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-                            <input type="text" name="name" id="name" class="mt-1 block w-full p-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600">
-                        </div>
+        <div class="container mx-auto p-6">
+            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+                <form method="POST" action="{{ route('users.store') }}">
+                    @csrf
 
-                        <!-- Email Input -->
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-                            <input type="email" name="email" id="email" class="mt-1 block w-full p-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600">
-                        </div>
+                    <!-- Name Input -->
+                    <div class="mb-6">
+                        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+                        <input type="text" name="name" id="name" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter user name" required>
+                    </div>
 
-                        <!-- Roles Select -->
-                        <div class="mb-4">
-                            <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Role</label>
-                            <select name="role" id="role" class="mt-1 block w-full p-2 border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600">
-                                <option value="">Select Role</option>
-                                @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <!-- Email Input -->
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+                        <input type="email" name="email" id="email" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter user email" required>
+                    </div>
 
-                        <!-- Permissions Checkboxes -->
-                        <div class="mb-4">
-                            <label for="permissions" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Permissions</label>
-                            <div class="mt-2" id="permissions-container">
-                                @foreach ($permissions as $permission)
-                                    <div>
-                                        <label class="inline-flex items-center">
-                                            <input type="checkbox" name="permissions[]" value="{{ $permission->name }}" class="permission-checkbox rounded dark:bg-gray-700 dark:border-gray-600">
-                                            <span class="ml-2 text-gray-700 dark:text-gray-300">{{ $permission->name }}</span>
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                    <!-- Roles Select -->
+                    <div class="mb-6">
+                        <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Role</label>
+                        <select name="role" id="role" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="" disabled selected>Select Role</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                        <!-- Submit Button -->
-                        <div class="mt-6">
-                            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                                Add User
-                            </button>
+                    <!-- Permissions Checkboxes -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Permissions</label>
+                        <div class="mt-2 space-y-4" id="permissions-container">
+                            @foreach ($permissions as $permission)
+                                <div class="flex items-center">
+                                    <input type="checkbox" name="permissions[]" value="{{ $permission->name }}" class="permission-checkbox h-4 w-4 text-blue-500 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600">
+                                    <label class="ml-3 text-sm text-gray-700 dark:text-gray-300">{{ ucfirst($permission->name) }}</label>
+                                </div>
+                            @endforeach
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-8">
+                        <button type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            Add User
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </x-slot>
@@ -84,4 +81,3 @@
         }
     });
 </script>
-script

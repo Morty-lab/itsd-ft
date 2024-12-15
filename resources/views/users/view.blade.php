@@ -11,11 +11,9 @@
         @endphp
     @endif
 
-
-
     <x-slot name="slot">
         <div class="flex justify-center bg-gray-50 dark:bg-gray-900 mt-3">
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg ">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
                 <div class="space-y-4">
                     <!-- User Information Card -->
                     <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md">
@@ -27,6 +25,17 @@
                         </p>
                         <p class="text-lg font-medium text-gray-700 dark:text-gray-300">
                             <strong>Roles:</strong> <span class="text-gray-900 dark:text-gray-200">{{ implode(', ', $user->roles->pluck('name')->toArray()) }}</span>
+                        </p>
+                        <!-- Permissions -->
+                        <p class="text-lg font-medium text-gray-700 dark:text-gray-300">
+                            <strong>Permissions:</strong>
+                            <span class="text-gray-900 dark:text-gray-200">
+                                @if($permissions->isEmpty())
+                                    No permissions assigned
+                                @else
+                                    {{ implode(', ', $permissions->pluck('name')->toArray()) }}
+                                @endif
+                            </span>
                         </p>
                     </div>
 

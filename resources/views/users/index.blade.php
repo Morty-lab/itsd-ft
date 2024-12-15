@@ -13,20 +13,23 @@
 
     <x-slot name="slot">
         <div class="container mx-auto p-4">
-            @if(auth()->user()->can('can add users') && auth()->user()->can('is super admin'))
-                <!-- Add User Button -->
-                <div class="flex justify-end mb-4">
-                    <a href="{{ route('users.create') }}"
-                       class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200">
-                        Add User
-                    </a>
-                </div>
-            @endif
+           
 
-            <!-- Table Section -->
+            <!-- Card Section -->
             <div class="flex justify-center">
-                <div class="w-full max-w-4xl">
-                    <div class="overflow-x-auto relative shadow-md sm:rounded-lg mx-auto" style="max-width: 50%;">
+                <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg w-full max-w-6xl p-6 mx-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                            User List
+                        </h3>
+                        @if(auth()->user()->can('can add users') && auth()->user()->can('is super admin'))
+                            <a href="{{ route('users.create') }}"
+                               class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200">
+                                Add User
+                            </a>
+                        @endif
+                    </div>
+                    <div class="overflow-x-auto relative">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -55,7 +58,7 @@
                                     @continue
                                 @endif
 
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="py-4 px-6 text-center">{{ $loop->iteration }}</td>
                                     <td class="py-4 px-6 text-center">{{ $user->name }}</td>
                                     <td class="py-4 px-6 text-center">{{ $user->email }}</td>
